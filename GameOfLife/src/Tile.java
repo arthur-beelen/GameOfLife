@@ -6,6 +6,7 @@ import javax.swing.JButton;
 public class Tile {
 	public JButton button;
 	private boolean alive;
+	private boolean aliveNext;
 	public int x, y;
 	
 	public Tile(int x, int y) {
@@ -41,8 +42,18 @@ public class Tile {
 		button.revalidate();
 		button.repaint();
 	}
+	
+	
 
-	private void toggleAlive() {
+	public void setAliveNext(boolean aliveNext) {
+		this.aliveNext = aliveNext;
+	}
+	
+	public boolean isAliveNext() {
+		return aliveNext;
+	}
+
+	public void toggleAlive() {
 		setAlive(!alive);
 	}
 }

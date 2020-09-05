@@ -7,8 +7,7 @@ public class Main {
        JFrame frame = new JFrame("Game Of Life");
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        frame.setSize(1920,1080);
-       frame.setResizable(false);
-       World world = new World(frame, 20);
+       World world = new World(frame, 80);
        frame.setVisible(true);
 	}
 }
