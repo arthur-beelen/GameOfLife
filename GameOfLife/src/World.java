@@ -123,12 +123,8 @@ public class World {
 	}
 	
 	private void applyNewStates() {
-		for(int x = 0; x < dimension; x++) {
-			for(int y = 0; y < dimension; y++) {
-				int index = getIndex(x, y);
-				if(tiles.get(index).isAliveNext() != tiles.get(index).isAlive())
-					tiles.get(index).toggleAlive();
-			}
-		}
+		tiles.parallelStream()
+						.filter(tile -> tile.isAliveNext() != tile.isAlive())
+						.forEach(tile -> tile.toggleAlive());
 	}
 }
