@@ -12,7 +12,7 @@ public class Tile {
 	public Tile(int x, int y) {
 		this.x = x; this.y = y;
 		
-		button = new JButton("0");
+		button = new JButton();
 		button.setBackground(Color.RED);
 		setAlive(false);
 		button.addActionListener(new ActionListener() {
@@ -28,15 +28,12 @@ public class Tile {
 	}
 
 	public void setAlive(boolean alive) {
-		System.out.println("Tile " + x + "x" + y + ": " + alive);
 		this.alive = alive;
 		if(alive) {
-			button.setText("1");
 			button.setBackground(Color.GREEN);
 			
 		}
 		else {
-			button.setText("0");
 			button.setBackground(Color.RED);
 		}
 		button.revalidate();
