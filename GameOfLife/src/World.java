@@ -26,9 +26,14 @@ public class World {
 	}
 	
 	
-	public World(JFrame frame, int dimension) {
+	public World(int dimension) {
 		this.dimension = dimension;
-		this.frame = frame;
+		
+		frame = new JFrame("Game Of Life");
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(960,1080);
+		frame.setVisible(true);
+		
 		
 		tiles = new ArrayList<Tile>();
 		
@@ -75,7 +80,6 @@ public class World {
 	private void fillButtons(JPanel buttonPanel, int dimension) {
 		for(int x = 0; x < dimension; x++) {
 			for(int y = 0; y < dimension; y++) {
-				
 				tiles.add(new Tile(x, y));
 				buttonPanel.add(tiles.get(tiles.size()-1).button);
 			}
@@ -94,7 +98,7 @@ public class World {
 		long timeStart = System.nanoTime();
 		long timed;
 		
-		//500-800 탎
+		//650 탎 90x90
 		if(pMode == Performance_Mode.FOR_LOOP) {
 			timeStart = System.nanoTime();
 			for(int x = 0; x < dimension; x++) {
@@ -104,14 +108,14 @@ public class World {
 			}
 			timed = System.nanoTime() - timeStart;
 		}
-		//500-800 탎
+		//650 탎 90x90
 		else if(pMode == Performance_Mode.STREAM) {
 			timeStart = System.nanoTime();
 			tiles.stream().forEach(tile -> newStateOfTile(tile));
 			timed = System.nanoTime() - timeStart;
 		}
 		
-		//150-250 탎 (~400 탎 for a lot of life in the game)
+		//150 탎 90x90
 		else {
 			timeStart = System.nanoTime();
 			tiles.parallelStream().forEach(tile -> newStateOfTile(tile));
